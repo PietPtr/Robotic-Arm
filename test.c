@@ -27,12 +27,12 @@ struct angles set_angles(float x, float y, float z) {
 
     double s1 = sqrt(pow(x, 2) + pow(y, 2));
     double s2 = sqrt(pow(s1, 2) + pow(z, 2));
-    printf("s1: %f, s2: %f\n", s1, s2);
+    // printf("s1: %f, s2: %f\n", s1, s2);
 
     double alpha2 = acos(UPPER / (2 * s2) +
                          s2 / (2 * UPPER) -
                          pow(UNDER, 2) / (2 * UPPER * s2)) * TO_DEG;
-    printf("alpha2: %f\n", alpha2);
+    // printf("alpha2: %f\n", alpha2);
 
     a.shoulder = 180 - (atan(z / s1) * TO_DEG) - alpha2;
 
@@ -40,18 +40,25 @@ struct angles set_angles(float x, float y, float z) {
                         UPPER / (2 * UNDER) -
                         pow(s2, 2) / (2 * UPPER * UNDER)) * TO_DEG;
 
-   printf("sigma: %f\n", sigma);
+   // printf("sigma: %f\n", sigma);
 
     a.elbow = 360 - 90 - sigma;
 
-    printf("\nBase:      %f\nShoulder:  %f\nElbow:     %f \n\n\n",
-        a.base, a.shoulder, a.elbow);
+    // printf("\nBase:      %f\nShoulder:  %f\nElbow:     %f \n\n\n",
+    //     a.base, a.shoulder, a.elbow);
+
+    printf("(%f, %f),", a.shoulder, a.elbow);
 
     return a;
 }
 
 int main() {
-    set_angles(5, 3, 6);
-    // set_angles(5, -3, 6);
+    // set_angles(5, 3, 6);
+
+    for (int i = 1; i < 35; i++) {
+        set_angles(5, 0, i / 5.0);
+    }
+    printf("\n");
+
     return 0;
 }
