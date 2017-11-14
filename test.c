@@ -47,18 +47,29 @@ struct angles set_angles(float x, float y, float z) {
     // printf("\nBase:      %f\nShoulder:  %f\nElbow:     %f \n\n\n",
     //     a.base, a.shoulder, a.elbow);
 
-    printf("(%f, %f),", a.shoulder, a.elbow);
+    // printf("(%f, %f),", a.shoulder, a.elbow);
 
     return a;
 }
 
-int main() {
+int main(int argc, char* argv[]) {
     // set_angles(5, 3, 6);
 
-    for (int i = 1; i < 35; i++) {
-        set_angles(5, 0, i / 5.0);
-    }
-    printf("\n");
+    // for (int i = 1; i < 35; i++) {
+    //     set_angles(4, 0, i / 5.0);
+    // }
+    // for (int i = 34; i >= 0; i--) {
+    //     set_angles(5, 0, i / 5.0);
+    // }
+    // printf("\n");
+
+    float x = atof(argv[1]);
+    float y = atof(argv[2]);
+    float z = atof(argv[3]);
+
+    struct angles a = set_angles(x, y, z);
+
+    printf("%f %f %f", a.base, a.shoulder, a.elbow);
 
     return 0;
 }
